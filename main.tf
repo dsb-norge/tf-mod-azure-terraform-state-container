@@ -6,7 +6,7 @@ locals {
   resource_group_name               = "rg${var.resource_group_number}-ss${var.subscription_number}-${local.application_name_full}-${var.environment_name}"
   storage_account_name              = lower(substr("strg${var.resource_group_number}ss${var.subscription_number}${local.application_name_short_full_alnum}${local.environment_name_alnum}", 0, 24))
   common_tags = {
-    ApplicationName = local.application_name_full
+    ApplicationName = var.application_name
     CreatedBy       = var.created_by_tag
     Environment     = var.environment_name
   }
