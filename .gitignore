@@ -1,5 +1,12 @@
+###############################################################################
+# Terraform
+###############################################################################
+
 # Local .terraform directories
 **/.terraform/*
+
+# We don't want providers declared in Terraform modules
+.providers.tf
 
 # Terraform lock files
 **/.terraform.lock.hcl
@@ -15,12 +22,22 @@
 **/*_override.tf
 **/*_override.tf.json
 
+
+###############################################################################
+# TFLint
+###############################################################################
+
 # Local tflint directories
 **/.tflint/*
 
 # Local tflint configuration
 # We use the one we get from https://raw.githubusercontent.com/dsb-norge/terraform-tflint-wrappers/main/tflint_linux.sh
 **/.tflint.hcl
+
+
+###############################################################################
+# Other
+###############################################################################
 
 # VScode files
 **/.vscode/*

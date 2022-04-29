@@ -3,7 +3,7 @@ variable "subscription_number" {
   type        = number
   nullable    = false
   validation {
-    error_message = "The subscription_number must be equal to or greater than 1."
+    error_message = "The 'subscription_number' must be equal to or greater than 1."
     condition     = var.subscription_number >= 1
   }
 }
@@ -12,7 +12,7 @@ variable "resource_group_number" {
   type        = number
   nullable    = false
   validation {
-    error_message = "The resource_group_number must be between 1 and 980."
+    error_message = "The 'resource_group_number' must be between 1 and 980."
     condition     = var.resource_group_number >= 1 && var.resource_group_number <= 980
   }
 }
@@ -21,13 +21,13 @@ variable "application_name" {
   type        = string
   nullable    = false
   validation {
-    error_message = "The application_name must be supplied and cannot be null or empty string."
+    error_message = "The 'application_name' must be supplied and cannot be null or empty string."
     condition = (
       can(var.application_name) ? (
         var.application_name != null ? (
           length(var.application_name) > 0
-        ) : false # fail if application_name is null
-      ) : true    # pass if application_name is not supplied, terraform handles this
+        ) : false # fail if null
+      ) : true    # pass if not supplied, terraform handles this
     )
   }
 }
@@ -36,13 +36,13 @@ variable "application_name_short" {
   type        = string
   nullable    = false
   validation {
-    error_message = "The application_name_short must be supplied and cannot be null or empty string."
+    error_message = "The 'application_name_short' must be supplied and cannot be null or empty string."
     condition = (
       can(var.application_name_short) ? (
         var.application_name_short != null ? (
           length(var.application_name_short) > 0
-        ) : false # fail if application_name_short is null
-      ) : true    # pass if application_name_short is not supplied, terraform handles this
+        ) : false # fail if null
+      ) : true    # pass if not supplied, terraform handles this
     )
   }
 }
@@ -51,13 +51,13 @@ variable "application_friendly_description" {
   type        = string
   nullable    = false
   validation {
-    error_message = "The application_friendly_description must be supplied and cannot be null or empty string."
+    error_message = "The 'application_friendly_description' must be supplied and cannot be null or empty string."
     condition = (
       can(var.application_friendly_description) ? (
         var.application_friendly_description != null ? (
           length(var.application_friendly_description) > 0
-        ) : false # fail if application_friendly_description is null
-      ) : true    # pass if application_friendly_description is not supplied, terraform handles this
+        ) : false # fail if null
+      ) : true    # pass if not supplied, terraform handles this
     )
   }
 }
@@ -66,13 +66,13 @@ variable "environment_name" {
   type        = string
   nullable    = false
   validation {
-    error_message = "The environment_name must be supplied and cannot be null or empty string."
+    error_message = "The 'environment_name' must be supplied and cannot be null or empty string."
     condition = (
       can(var.environment_name) ? (
         var.environment_name != null ? (
           length(var.environment_name) > 0
-        ) : false # fail if environment_name is null
-      ) : true    # pass if environment_name is not supplied, terraform handles this
+        ) : false # fail if null
+      ) : true    # pass if not supplied, terraform handles this
     )
   }
 }
@@ -82,13 +82,13 @@ variable "azure_region" {
   nullable    = false
   default     = "norwayeast"
   validation {
-    error_message = "The azure_region must be supplied and cannot be null or empty string."
+    error_message = "The 'azure_region' must be supplied and cannot be null or empty string."
     condition = (
       can(var.azure_region) ? (
         var.azure_region != null ? (
           length(var.azure_region) > 0
-        ) : false # fail if azure_region is null
-      ) : true    # pass if azure_region is not supplied, terraform handles this
+        ) : false # fail if null
+      ) : true    # pass if not supplied, terraform handles this
     )
   }
 }
@@ -97,13 +97,13 @@ variable "created_by_tag" {
   type        = string
   nullable    = false
   validation {
-    error_message = "The created_by_tag must be supplied and cannot be null or empty string."
+    error_message = "The 'created_by_tag' must be supplied and cannot be null or empty string."
     condition = (
       can(var.created_by_tag) ? (
         var.created_by_tag != null ? (
           length(var.created_by_tag) > 0
-        ) : false # fail if created_by_tag is null
-      ) : true    # pass if created_by_tag is not supplied, terraform handles this
+        ) : false # fail if null
+      ) : true    # pass if not supplied, terraform handles this
     )
   }
 }
@@ -113,13 +113,13 @@ variable "state_container_name" {
   nullable    = false
   default     = "terraform-remote-backend-state"
   validation {
-    error_message = "The state_container_name must be supplied and cannot be null or empty string."
+    error_message = "The 'state_container_name' must be supplied and cannot be null or empty string."
     condition = (
       can(var.state_container_name) ? (
         var.state_container_name != null ? (
           length(var.state_container_name) > 0
-        ) : false # fail if state_container_name is null
-      ) : true    # pass if state_container_name is not supplied, terraform handles this
+        ) : false # fail if null
+      ) : true    # pass if not supplied, terraform handles this
     )
   }
 }
@@ -147,8 +147,8 @@ variable "network_rules" {
       can(var.network_rules.default_action) ? (
         var.network_rules.default_action != null ? (
           contains(["Deny", "Allow"], var.network_rules.default_action)
-        ) : false # fail if default_action is null
-      ) : true    # pass if default_action is not supplied, terraform handles this
+        ) : false # fail if null
+      ) : true    # pass if not supplied, terraform handles this
     )
   }
   validation {
@@ -157,8 +157,8 @@ variable "network_rules" {
       can(var.network_rules.bypass) ? (
         var.network_rules.bypass != null ? (
           length(setsubtract(var.network_rules.bypass, ["Logging", "Metrics", "AzureServices", "None"])) == 0
-        ) : true # allow bypass to be optional
-      ) : true   # pass if default_action is not supplied, terraform handles this
+        ) : true # allow to be optional
+      ) : true   # pass if not supplied, terraform handles this
     )
   }
   validation {
@@ -173,8 +173,8 @@ variable "network_rules" {
               || can(regex("^(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$", ip))
             )
           ])
-        ) : true # allow ip_rules to be optional
-      ) : true   # pass if default_action is not supplied, terraform handles this
+        ) : true # allow to be optional
+      ) : true   # pass if not supplied, terraform handles this
     )
   }
   validation {
@@ -186,8 +186,8 @@ variable "network_rules" {
             for id in var.network_rules.virtual_network_subnet_ids : (
               id != null && length(id) > 50
           )])
-        ) : true # allow virtual_network_subnet_ids to be optional
-      ) : true   # pass if default_action is not supplied, terraform handles this
+        ) : true # allow to be optional
+      ) : true   # pass if not supplied, terraform handles this
     )
   }
 }
