@@ -22,13 +22,7 @@ variable "application_name" {
   nullable    = false
   validation {
     error_message = "The 'application_name' must be supplied and cannot be null or empty string."
-    condition = (
-      can(var.application_name) ? (
-        var.application_name != null ? (
-          length(var.application_name) > 0
-        ) : false # fail if null
-      ) : true    # pass if not supplied, terraform handles this
-    )
+    condition     = length(var.application_name) > 0
   }
 }
 variable "application_name_short" {
@@ -37,13 +31,7 @@ variable "application_name_short" {
   nullable    = false
   validation {
     error_message = "The 'application_name_short' must be supplied and cannot be null or empty string."
-    condition = (
-      can(var.application_name_short) ? (
-        var.application_name_short != null ? (
-          length(var.application_name_short) > 0
-        ) : false # fail if null
-      ) : true    # pass if not supplied, terraform handles this
-    )
+    condition     = length(var.application_name_short) > 0
   }
 }
 variable "application_friendly_description" {
@@ -52,13 +40,7 @@ variable "application_friendly_description" {
   nullable    = false
   validation {
     error_message = "The 'application_friendly_description' must be supplied and cannot be null or empty string."
-    condition = (
-      can(var.application_friendly_description) ? (
-        var.application_friendly_description != null ? (
-          length(var.application_friendly_description) > 0
-        ) : false # fail if null
-      ) : true    # pass if not supplied, terraform handles this
-    )
+    condition     = length(var.application_friendly_description) > 0
   }
 }
 variable "environment_name" {
@@ -67,13 +49,7 @@ variable "environment_name" {
   nullable    = false
   validation {
     error_message = "The 'environment_name' must be supplied and cannot be null or empty string."
-    condition = (
-      can(var.environment_name) ? (
-        var.environment_name != null ? (
-          length(var.environment_name) > 0
-        ) : false # fail if null
-      ) : true    # pass if not supplied, terraform handles this
-    )
+    condition     = length(var.environment_name) > 0
   }
 }
 variable "azure_region" {
@@ -83,13 +59,7 @@ variable "azure_region" {
   default     = "norwayeast"
   validation {
     error_message = "The 'azure_region' must be supplied and cannot be null or empty string."
-    condition = (
-      can(var.azure_region) ? (
-        var.azure_region != null ? (
-          length(var.azure_region) > 0
-        ) : false # fail if null
-      ) : true    # pass if not supplied, terraform handles this
-    )
+    condition     = length(var.azure_region) > 0
   }
 }
 variable "created_by_tag" {
@@ -98,13 +68,7 @@ variable "created_by_tag" {
   nullable    = false
   validation {
     error_message = "The 'created_by_tag' must be supplied and cannot be null or empty string."
-    condition = (
-      can(var.created_by_tag) ? (
-        var.created_by_tag != null ? (
-          length(var.created_by_tag) > 0
-        ) : false # fail if null
-      ) : true    # pass if not supplied, terraform handles this
-    )
+    condition     = length(var.created_by_tag) > 0
   }
 }
 variable "state_container_name" {
@@ -114,13 +78,7 @@ variable "state_container_name" {
   default     = "terraform-remote-backend-state"
   validation {
     error_message = "The 'state_container_name' must be supplied and cannot be null or empty string."
-    condition = (
-      can(var.state_container_name) ? (
-        var.state_container_name != null ? (
-          length(var.state_container_name) > 0
-        ) : false # fail if null
-      ) : true    # pass if not supplied, terraform handles this
-    )
+    condition     = length(var.state_container_name) > 0
   }
 }
 variable "network_rules" {

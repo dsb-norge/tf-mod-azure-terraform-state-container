@@ -117,11 +117,11 @@ After merge of PR to main use tags to release.
 
 Use semantic versioning, see [semver.org](https://semver.org/). Always push tags and add tag annotations.
 
-Example of patch release `v0.0.2`:
+Example of patch release `v0.0.4`:
 ```bash
 git checkout origin/main
 git pull origin main
-git tag -a 'v0.0.2'  # add patch tag, add change description
+git tag -a 'v0.0.4'  # add patch tag, add change description
 git tag -f -a 'v0.0' # move the minor tag, amend the change description
 git tag -f -a 'v0'   # move the major tag, amend the change description
 git push -f --tags   # force push the new tags
