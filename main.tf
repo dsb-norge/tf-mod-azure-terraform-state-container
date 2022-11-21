@@ -54,3 +54,23 @@ resource "azurerm_storage_container" "tfstate" {
     prevent_destroy = true
   }
 }
+
+module "tfstate_container_deletion_lock" {
+  source = "git@github.com:dsb-norge/tf-mod-azure-mgmt-lock.git?ref=v0"
+  protected_resources = {
+    "resource-group" = {
+      "id"   = azurerm_resource_group.tfstate.id
+      "name" = azurerm_resource_group.tfstate.name
+    }
+    "storage-account" = {
+      "id"   = azurerm_storage_account.tfstate.id
+      "name" = azurerm_storage_account.tfstate.name
+    }
+    "tfstate" = {
+      "id"   = azurerm_storage_container.tfstate.id
+      "name" = azurerm_storage_container.tfstate.name
+    }
+  }
+  app_name   = var.application_name
+  created_by = var.created_by_tag
+}
