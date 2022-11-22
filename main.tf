@@ -56,7 +56,7 @@ resource "azurerm_storage_container" "tfstate" {
 }
 
 module "tfstate_container_deletion_lock" {
-  source = "git@github.com:dsb-norge/tf-mod-azure-mgmt-lock.git?ref=v0"
+  source = "github.com/dsb-norge/tf-mod-azure-mgmt-lock?ref=v0"
   protected_resources = {
     "resource-group" = {
       "id"   = azurerm_resource_group.tfstate.id
