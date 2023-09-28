@@ -10,3 +10,11 @@ output "container_name" {
   description = "Name of the storage container created for terraform backend state."
   value       = azurerm_storage_container.tfstate.name
 }
+output "container_id" {
+  description = "The ID of the storage container created for terraform backend state."
+  value       = azurerm_storage_container.tfstate.id
+}
+output "container_resource_manager_id" {
+  description = "The Resource Manager ID of the storage container created for terraform backend state."
+  value       = azurerm_storage_container.tfstate.resource_manager_id
+}

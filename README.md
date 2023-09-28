@@ -145,16 +145,16 @@ git push --tags      # push the new tags
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
 
-| Name                                                                      | Version |
-| ------------------------------------------------------------------------- | ------- |
-| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0  |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm)       | ~> 3.0  |
+| Name | Version |
+|------|---------|
+| <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.0 |
 
 ## Providers
 
-| Name                                                          | Version |
-| ------------------------------------------------------------- | ------- |
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.3.0   |
+| Name | Version |
+|------|---------|
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.3.0 |
 
 ## Modules
 
@@ -162,33 +162,35 @@ No modules.
 
 ## Resources
 
-| Name                                                                                                                                                           | Type     |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------- |
-| [azurerm_resource_group.tfstate](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group)                               | resource |
-| [azurerm_storage_account.tfstate](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account)                             | resource |
+| Name | Type |
+|------|------|
+| [azurerm_resource_group.tfstate](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/resource_group) | resource |
+| [azurerm_storage_account.tfstate](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account) | resource |
 | [azurerm_storage_account_network_rules.tfstate](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_account_network_rules) | resource |
-| [azurerm_storage_container.tfstate](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container)                         | resource |
+| [azurerm_storage_container.tfstate](https://registry.terraform.io/providers/hashicorp/azurerm/latest/docs/resources/storage_container) | resource |
 
 ## Inputs
 
-| Name                                                                                                                                   | Description                                                                              | Type                                                                                                                                                                                                                      | Default                                                                                                                                                          | Required |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | :------: |
-| <a name="input_application_friendly_description"></a> [application\_friendly\_description](#input\_application\_friendly\_description) | Friendly description of the application to use when naming resources.                    | `string`                                                                                                                                                                                                                  | n/a                                                                                                                                                              |   yes    |
-| <a name="input_application_name"></a> [application\_name](#input\_application\_name)                                                   | Name of the application to use when naming resources.                                    | `string`                                                                                                                                                                                                                  | n/a                                                                                                                                                              |   yes    |
-| <a name="input_application_name_short"></a> [application\_name\_short](#input\_application\_name\_short)                               | Short name of the application to use when naming resources eg. for storage account name. | `string`                                                                                                                                                                                                                  | n/a                                                                                                                                                              |   yes    |
-| <a name="input_azure_region"></a> [azure\_region](#input\_azure\_region)                                                               | Name of the Azure region to use when naming resources.                                   | `string`                                                                                                                                                                                                                  | `"norwayeast"`                                                                                                                                                   |    no    |
-| <a name="input_created_by_tag"></a> [created\_by\_tag](#input\_created\_by\_tag)                                                       | Tag to use when naming resources.                                                        | `string`                                                                                                                                                                                                                  | n/a                                                                                                                                                              |   yes    |
-| <a name="input_environment_name"></a> [environment\_name](#input\_environment\_name)                                                   | Name of the environment to use when naming resources.                                    | `string`                                                                                                                                                                                                                  | n/a                                                                                                                                                              |   yes    |
-| <a name="input_network_rules"></a> [network\_rules](#input\_network\_rules)                                                            | Network rules to apply to the terraform backend state storage account.                   | <pre>object({<br>    default_action             = string<br>    bypass                     = list(string)<br>    ip_rules                   = list(string)<br>    virtual_network_subnet_ids = list(string)<br>  })</pre> | <pre>{<br>  "bypass": null,<br>  "default_action": "Deny",<br>  "ip_rules": [<br>    "91.229.21.0/24"<br>  ],<br>  "virtual_network_subnet_ids": null<br>}</pre> |    no    |
-| <a name="input_resource_group_number"></a> [resource\_group\_number](#input\_resource\_group\_number)                                  | Resource group number to use when naming resources.                                      | `number`                                                                                                                                                                                                                  | n/a                                                                                                                                                              |   yes    |
-| <a name="input_state_container_name"></a> [state\_container\_name](#input\_state\_container\_name)                                     | Name of the state container to use when naming resources.                                | `string`                                                                                                                                                                                                                  | `"terraform-remote-backend-state"`                                                                                                                               |    no    |
-| <a name="input_subscription_number"></a> [subscription\_number](#input\_subscription\_number)                                          | Subscription number to use when naming resources.                                        | `number`                                                                                                                                                                                                                  | n/a                                                                                                                                                              |   yes    |
+| Name | Description | Type | Default | Required |
+|------|-------------|------|---------|:--------:|
+| <a name="input_application_friendly_description"></a> [application\_friendly\_description](#input\_application\_friendly\_description) | Friendly description of the application to use when naming resources. | `string` | n/a | yes |
+| <a name="input_application_name"></a> [application\_name](#input\_application\_name) | Name of the application to use when naming resources. | `string` | n/a | yes |
+| <a name="input_application_name_short"></a> [application\_name\_short](#input\_application\_name\_short) | Short name of the application to use when naming resources eg. for storage account name. | `string` | n/a | yes |
+| <a name="input_azure_region"></a> [azure\_region](#input\_azure\_region) | Name of the Azure region to use when naming resources. | `string` | `"norwayeast"` | no |
+| <a name="input_created_by_tag"></a> [created\_by\_tag](#input\_created\_by\_tag) | Tag to use when naming resources. | `string` | n/a | yes |
+| <a name="input_environment_name"></a> [environment\_name](#input\_environment\_name) | Name of the environment to use when naming resources. | `string` | n/a | yes |
+| <a name="input_network_rules"></a> [network\_rules](#input\_network\_rules) | Network rules to apply to the terraform backend state storage account. | <pre>object({<br>    default_action             = string<br>    bypass                     = list(string)<br>    ip_rules                   = list(string)<br>    virtual_network_subnet_ids = list(string)<br>  })</pre> | <pre>{<br>  "bypass": null,<br>  "default_action": "Deny",<br>  "ip_rules": [<br>    "91.229.21.0/24"<br>  ],<br>  "virtual_network_subnet_ids": null<br>}</pre> | no |
+| <a name="input_resource_group_number"></a> [resource\_group\_number](#input\_resource\_group\_number) | Resource group number to use when naming resources. | `number` | n/a | yes |
+| <a name="input_state_container_name"></a> [state\_container\_name](#input\_state\_container\_name) | Name of the state container to use when naming resources. | `string` | `"terraform-remote-backend-state"` | no |
+| <a name="input_subscription_number"></a> [subscription\_number](#input\_subscription\_number) | Subscription number to use when naming resources. | `number` | n/a | yes |
 
 ## Outputs
 
-| Name                                                                                                 | Description                                                        |
-| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| <a name="output_container_name"></a> [container\_name](#output\_container\_name)                     | Name of the storage container created for terraform backend state. |
-| <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name)    | Name of the resource group created for terraform backend state.    |
-| <a name="output_storage_account_name"></a> [storage\_account\_name](#output\_storage\_account\_name) | Name of the storage account created for terraform backend state.   |
+| Name | Description |
+|------|-------------|
+| <a name="output_container_id"></a> [container\_id](#output\_container\_id) | The ID of the storage container created for terraform backend state. |
+| <a name="output_container_name"></a> [container\_name](#output\_container\_name) | Name of the storage container created for terraform backend state. |
+| <a name="output_container_resource_manager_id"></a> [container\_resource\_manager\_id](#output\_container\_resource\_manager\_id) | The Resource Manager ID of the storage container created for terraform backend state. |
+| <a name="output_resource_group_name"></a> [resource\_group\_name](#output\_resource\_group\_name) | Name of the resource group created for terraform backend state. |
+| <a name="output_storage_account_name"></a> [storage\_account\_name](#output\_storage\_account\_name) | Name of the storage account created for terraform backend state. |
 <!-- END_TF_DOCS -->
