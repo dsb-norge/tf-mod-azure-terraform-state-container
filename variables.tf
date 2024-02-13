@@ -1,19 +1,10 @@
-variable "subscription_number" {
-  description = "Subscription number to use when naming resources."
-  type        = number
+variable "application_friendly_description" {
+  description = "Friendly description of the application to use when naming resources."
+  type        = string
   nullable    = false
   validation {
-    error_message = "The 'subscription_number' must be equal to or greater than 1."
-    condition     = var.subscription_number >= 1
-  }
-}
-variable "resource_group_number" {
-  description = "Resource group number to use when naming resources."
-  type        = number
-  nullable    = false
-  validation {
-    error_message = "The 'resource_group_number' must be between 1 and 980."
-    condition     = var.resource_group_number >= 1 && var.resource_group_number <= 980
+    error_message = "The 'application_friendly_description' must be supplied and cannot be null or empty string."
+    condition     = length(var.application_friendly_description) > 0
   }
 }
 variable "application_name" {
@@ -34,13 +25,13 @@ variable "application_name_short" {
     condition     = length(var.application_name_short) > 0
   }
 }
-variable "application_friendly_description" {
-  description = "Friendly description of the application to use when naming resources."
+variable "created_by_tag" {
+  description = "Tag to use when naming resources."
   type        = string
   nullable    = false
   validation {
-    error_message = "The 'application_friendly_description' must be supplied and cannot be null or empty string."
-    condition     = length(var.application_friendly_description) > 0
+    error_message = "The 'created_by_tag' must be supplied and cannot be null or empty string."
+    condition     = length(var.created_by_tag) > 0
   }
 }
 variable "environment_name" {
@@ -52,6 +43,30 @@ variable "environment_name" {
     condition     = length(var.environment_name) > 0
   }
 }
+variable "resource_group_number" {
+  description = "Resource group number to use when naming resources."
+  type        = number
+  nullable    = false
+  validation {
+    error_message = "The 'resource_group_number' must be between 1 and 980."
+    condition     = var.resource_group_number >= 1 && var.resource_group_number <= 980
+  }
+}
+variable "subscription_number" {
+  description = "Subscription number to use when naming resources."
+  type        = number
+  nullable    = false
+  validation {
+    error_message = "The 'subscription_number' must be equal to or greater than 1."
+    condition     = var.subscription_number >= 1
+  }
+}
+variable "allow_nested_items_to_be_public" {
+  description = "Blob anonymous access"
+  type        = bool
+  nullable    = false
+  default     = false
+}
 variable "azure_region" {
   description = "Name of the Azure region to use when naming resources."
   type        = string
@@ -62,25 +77,6 @@ variable "azure_region" {
     condition     = length(var.azure_region) > 0
   }
 }
-variable "created_by_tag" {
-  description = "Tag to use when naming resources."
-  type        = string
-  nullable    = false
-  validation {
-    error_message = "The 'created_by_tag' must be supplied and cannot be null or empty string."
-    condition     = length(var.created_by_tag) > 0
-  }
-}
-variable "state_container_name" {
-  description = "Name of the state container to use when naming resources."
-  type        = string
-  nullable    = false
-  default     = "terraform-remote-backend-state"
-  validation {
-    error_message = "The 'state_container_name' must be supplied and cannot be null or empty string."
-    condition     = length(var.state_container_name) > 0
-  }
-}
 variable "network_rules" {
   description = "Network rules to apply to the terraform backend state storage account."
   type = object({
@@ -89,7 +85,7 @@ variable "network_rules" {
     ip_rules                   = list(string)
     virtual_network_subnet_ids = list(string)
   })
-  nullable = true
+  #  nullable = true  --> Default value is null, so no need to specify this.
   default = {
     # Default is to allow only DSB public IPs.
     default_action = "Deny"
@@ -147,5 +143,21 @@ variable "network_rules" {
         ) : true # allow to be optional
       ) : true   # pass if not supplied, terraform handles this
     )
+  }
+}
+variable "shared_access_key_enabled" {
+  description = "Permission to be authorized with the account access key via Shared Key"
+  type        = bool
+  nullable    = false
+  default     = false
+}
+variable "state_container_name" {
+  description = "Name of the state container to use when naming resources."
+  type        = string
+  nullable    = false
+  default     = "terraform-remote-backend-state"
+  validation {
+    error_message = "The 'state_container_name' must be supplied and cannot be null or empty string."
+    condition     = length(var.state_container_name) > 0
   }
 }

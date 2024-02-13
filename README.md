@@ -154,7 +154,7 @@ git push --tags      # push the new tags
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.3.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.91.0 |
 
 ## Modules
 
@@ -173,6 +173,7 @@ No modules.
 
 | Name | Description | Type | Default | Required |
 |------|-------------|------|---------|:--------:|
+| <a name="input_allow_nested_items_to_be_public"></a> [allow\_nested\_items\_to\_be\_public](#input\_allow\_nested\_items\_to\_be\_public) | Blob anonymous access | `bool` | `false` | no |
 | <a name="input_application_friendly_description"></a> [application\_friendly\_description](#input\_application\_friendly\_description) | Friendly description of the application to use when naming resources. | `string` | n/a | yes |
 | <a name="input_application_name"></a> [application\_name](#input\_application\_name) | Name of the application to use when naming resources. | `string` | n/a | yes |
 | <a name="input_application_name_short"></a> [application\_name\_short](#input\_application\_name\_short) | Short name of the application to use when naming resources eg. for storage account name. | `string` | n/a | yes |
@@ -181,6 +182,7 @@ No modules.
 | <a name="input_environment_name"></a> [environment\_name](#input\_environment\_name) | Name of the environment to use when naming resources. | `string` | n/a | yes |
 | <a name="input_network_rules"></a> [network\_rules](#input\_network\_rules) | Network rules to apply to the terraform backend state storage account. | <pre>object({<br>    default_action             = string<br>    bypass                     = list(string)<br>    ip_rules                   = list(string)<br>    virtual_network_subnet_ids = list(string)<br>  })</pre> | <pre>{<br>  "bypass": null,<br>  "default_action": "Deny",<br>  "ip_rules": [<br>    "91.229.21.0/24"<br>  ],<br>  "virtual_network_subnet_ids": null<br>}</pre> | no |
 | <a name="input_resource_group_number"></a> [resource\_group\_number](#input\_resource\_group\_number) | Resource group number to use when naming resources. | `number` | n/a | yes |
+| <a name="input_shared_access_key_enabled"></a> [shared\_access\_key\_enabled](#input\_shared\_access\_key\_enabled) | Permission to be authorized with the account access key via Shared Key | `bool` | `false` | no |
 | <a name="input_state_container_name"></a> [state\_container\_name](#input\_state\_container\_name) | Name of the state container to use when naming resources. | `string` | `"terraform-remote-backend-state"` | no |
 | <a name="input_subscription_number"></a> [subscription\_number](#input\_subscription\_number) | Subscription number to use when naming resources. | `number` | n/a | yes |
 
