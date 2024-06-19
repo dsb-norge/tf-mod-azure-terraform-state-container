@@ -44,7 +44,6 @@ module "terraform_state_container" {
 
   # minimum information necessary
   subscription_number              = 1
-  resource_group_number            = 2
   environment_name                 = "dev"
   application_name                 = "my-web-first-app"
   application_name_short           = "mwa" # for storage account name
@@ -66,7 +65,6 @@ module "terraform_state_container" {
 
   # minimum information necessary
   subscription_number              = 1
-  resource_group_number            = 2
   environment_name                 = "dev"
   application_name                 = "my-web-first-app"
   application_name_short           = "mwa" # for storage account name
