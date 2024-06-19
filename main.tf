@@ -4,7 +4,7 @@ locals {
   application_name_short_full_alnum = join("", regexall("[[:alnum:]]", local.application_name_short_full))
   environment_name_alnum            = join("", regexall("[[:alnum:]]", var.environment_name))
   resource_group_name               = "rg-ss${var.subscription_number}-${local.application_name_full}-${var.environment_name}"
-  storage_account_name              = lower(substr("strgss${var.subscription_number}${local.application_name_short_full_alnum}${local.environment_name_alnum}", 0, 24))
+  storage_account_name              = lower(substr("stss${var.subscription_number}${local.application_name_short_full_alnum}${local.environment_name_alnum}", 0, 24))
   common_tags = {
     ApplicationName = var.application_name
     CreatedBy       = var.created_by_tag
