@@ -44,7 +44,6 @@ module "terraform_state_container" {
 
   # minimum information necessary
   subscription_number              = 1
-  resource_group_number            = 2
   environment_name                 = "dev"
   application_name                 = "my-web-first-app"
   application_name_short           = "mwa" # for storage account name
@@ -66,7 +65,6 @@ module "terraform_state_container" {
 
   # minimum information necessary
   subscription_number              = 1
-  resource_group_number            = 2
   environment_name                 = "dev"
   application_name                 = "my-web-first-app"
   application_name_short           = "mwa" # for storage account name
@@ -154,7 +152,7 @@ git push --tags      # push the new tags
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.3.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.91.0 |
 
 ## Modules
 
@@ -180,7 +178,6 @@ No modules.
 | <a name="input_created_by_tag"></a> [created\_by\_tag](#input\_created\_by\_tag) | Tag to use when naming resources. | `string` | n/a | yes |
 | <a name="input_environment_name"></a> [environment\_name](#input\_environment\_name) | Name of the environment to use when naming resources. | `string` | n/a | yes |
 | <a name="input_network_rules"></a> [network\_rules](#input\_network\_rules) | Network rules to apply to the terraform backend state storage account. | <pre>object({<br>    default_action             = string<br>    bypass                     = list(string)<br>    ip_rules                   = list(string)<br>    virtual_network_subnet_ids = list(string)<br>  })</pre> | <pre>{<br>  "bypass": null,<br>  "default_action": "Deny",<br>  "ip_rules": [<br>    "91.229.21.0/24"<br>  ],<br>  "virtual_network_subnet_ids": null<br>}</pre> | no |
-| <a name="input_resource_group_number"></a> [resource\_group\_number](#input\_resource\_group\_number) | Resource group number to use when naming resources. | `number` | n/a | yes |
 | <a name="input_state_container_name"></a> [state\_container\_name](#input\_state\_container\_name) | Name of the state container to use when naming resources. | `string` | `"terraform-remote-backend-state"` | no |
 | <a name="input_subscription_number"></a> [subscription\_number](#input\_subscription\_number) | Subscription number to use when naming resources. | `number` | n/a | yes |
 
