@@ -7,15 +7,6 @@ variable "subscription_number" {
     condition     = var.subscription_number >= 1
   }
 }
-variable "resource_group_number" {
-  description = "Resource group number to use when naming resources."
-  type        = number
-  nullable    = false
-  validation {
-    error_message = "The 'resource_group_number' must be between 1 and 980."
-    condition     = var.resource_group_number >= 1 && var.resource_group_number <= 980
-  }
-}
 variable "application_name" {
   description = "Name of the application to use when naming resources."
   type        = string
