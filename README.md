@@ -28,7 +28,6 @@ The resource are tagged as follows:
 | Environment     | `var.environment_name`                                         |
 | Description     | Hardcoded with `var.application_friendly_description` appended |
 
-
 ## Usage
 
 ### Basic example
@@ -99,7 +98,6 @@ module "terraform_state_container" {
 
 ```
 
-
 ### Generate and inject terraform-docs in README.md
 
 ```shell
@@ -159,13 +157,13 @@ git push --tags      # push the new tags
 | Name | Version |
 |------|---------|
 | <a name="requirement_terraform"></a> [terraform](#requirement\_terraform) | ~> 1.0 |
-| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 3.0 |
+| <a name="requirement_azurerm"></a> [azurerm](#requirement\_azurerm) | ~> 4.0 |
 
 ## Providers
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.3.0 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.0.1 |
 
 ## Modules
 
