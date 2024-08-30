@@ -106,7 +106,7 @@ module "terraform_state_container" {
 
 ```shell
 # go1.17+
-go install github.com/terraform-docs/terraform-docs@v0.16.0
+go install github.com/terraform-docs/terraform-docs@v0.18.0
 export PATH=$PATH:$(go env GOPATH)/bin
 terraform-docs markdown table --output-file README.md .
 ```
@@ -117,30 +117,23 @@ After merge of PR to main use tags to release.
 
 Use semantic versioning, see [semver.org](https://semver.org/). Always push tags and add tag annotations.
 
-Example of patch release `v0.0.4`:
+Example of patch release `v0.1.0`:
 ```bash
-git checkout origin/main
-git pull origin main
-git tag -a 'v0.0.4'  # add patch tag, add change description
-git tag -f -a 'v0.0' # move the minor tag, amend the change description
+git checkout origin/v0-branch
+git pull origin v0-branch
+git tag --sort=-creatordate | grep '^v0' | head -n 10 # review latest release tag to determine which is the next
+git log v0..v0-branch --pretty=format:"%s"   # output changes since last release
+git tag -a 'v0.1.0'  # add patch tag, add change description
+git tag -f -a 'v0.1' # move the minor tag, amend the change description
 git tag -f -a 'v0'   # move the major tag, amend the change description
-git push -f --tags   # force push the new tags
-```
-
-Example of major release `v1.0.0`:
-```bash
-git checkout origin/main
-git pull origin main
-git tag -a 'v1.0.0'  # add patch tag, add your change description
-git tag -a 'v1.0'    # add minor tag, add your change description
-git tag -a 'v0'      # add major tag, add your change description
-git push --tags      # push the new tags
+git push origin 'refs/tags/v0.1.0'  # push the new tag
+git push -f origin 'refs/tags/v0.1' # force push moved tags
+git push -f origin 'refs/tags/v0'   # force push moved tags
 ```
 
 **Note:** If you are having problems pulling main after a release, try to force fetch the tags: `git fetch --tags -f`.
 
-
-# terraform-docs
+## terraform-docs
 
 <!-- BEGIN_TF_DOCS -->
 ## Requirements
