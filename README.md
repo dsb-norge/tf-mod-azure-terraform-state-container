@@ -163,7 +163,7 @@ git push --tags      # push the new tags
 
 | Name | Version |
 |------|---------|
-| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 4.0.1 |
+| <a name="provider_azurerm"></a> [azurerm](#provider\_azurerm) | 3.91.0 |
 
 ## Modules
 
@@ -186,6 +186,7 @@ No modules.
 | <a name="input_application_name"></a> [application\_name](#input\_application\_name) | Name of the application to use when naming resources. | `string` | n/a | yes |
 | <a name="input_application_name_short"></a> [application\_name\_short](#input\_application\_name\_short) | Short name of the application to use when naming resources eg. for storage account name. | `string` | n/a | yes |
 | <a name="input_azure_region"></a> [azure\_region](#input\_azure\_region) | Name of the Azure region to use when naming resources. | `string` | `"norwayeast"` | no |
+| <a name="input_costcenter_tag"></a> [costcenter\_tag](#input\_costcenter\_tag) | DSB mandatory tag identifying resource group cost center affiliation.<br>Default value is set to DSB IKT cost center. | `string` | `"142"` | no |
 | <a name="input_created_by_tag"></a> [created\_by\_tag](#input\_created\_by\_tag) | Tag to use when naming resources. | `string` | n/a | yes |
 | <a name="input_environment_name"></a> [environment\_name](#input\_environment\_name) | Name of the environment to use when naming resources. | `string` | n/a | yes |
 | <a name="input_network_rules"></a> [network\_rules](#input\_network\_rules) | Network rules to apply to the terraform backend state storage account. | <pre>object({<br>    default_action             = string<br>    bypass                     = list(string)<br>    ip_rules                   = list(string)<br>    virtual_network_subnet_ids = list(string)<br>  })</pre> | <pre>{<br>  "bypass": null,<br>  "default_action": "Deny",<br>  "ip_rules": [<br>    "91.229.21.0/24"<br>  ],<br>  "virtual_network_subnet_ids": null<br>}</pre> | no |
