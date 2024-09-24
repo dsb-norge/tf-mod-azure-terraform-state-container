@@ -79,6 +79,17 @@ variable "azure_region" {
   }
 }
 
+variable "costcenter_tag_value" {
+  description = <<-EOF
+    The value of the costCenter tag.
+    This is DSB mandatory tag identifying resource group cost center affiliation.
+    Default value is set to DSB IKT cost center.
+  EOF
+  type        = string
+  nullable    = false
+  default     = "142" # DSB IKT cost center
+}
+
 variable "network_rules" {
   description = "Network rules to apply to the terraform backend state storage account."
   type = object({
@@ -158,3 +169,13 @@ variable "state_container_name" {
     condition     = length(var.state_container_name) > 0
   }
 }
+#TODO: Uncomment the following lines when the systemId tag is available and add default value.
+#variable "systemid_tag_value" {
+#  description = <<-EOF
+#    The value of the systemId tag.
+#    This is DSB mandatory tag identifying resource system affiliation.
+#  EOF
+#  type        = string
+#  nullable    = false
+#  default     = 
+#}
