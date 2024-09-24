@@ -1,10 +1,10 @@
-variable "subscription_number" {
-  description = "Subscription number to use when naming resources."
-  type        = number
+variable "application_friendly_description" {
+  description = "Friendly description of the application to use when naming resources."
+  type        = string
   nullable    = false
   validation {
-    error_message = "The 'subscription_number' must be equal to or greater than 1."
-    condition     = var.subscription_number >= 1
+    error_message = "The 'application_friendly_description' must be supplied and cannot be null or empty string."
+    condition     = length(var.application_friendly_description) > 0
   }
 }
 variable "application_name" {
@@ -25,13 +25,13 @@ variable "application_name_short" {
     condition     = length(var.application_name_short) > 0
   }
 }
-variable "application_friendly_description" {
-  description = "Friendly description of the application to use when naming resources."
+variable "created_by_tag" {
+  description = "The value of createdBy Tag"
   type        = string
   nullable    = false
   validation {
-    error_message = "The 'application_friendly_description' must be supplied and cannot be null or empty string."
-    condition     = length(var.application_friendly_description) > 0
+    error_message = "The 'created_by_tag' must be supplied and cannot be null or empty string."
+    condition     = length(var.created_by_tag) > 0
   }
 }
 variable "environment_name" {
@@ -41,6 +41,15 @@ variable "environment_name" {
   validation {
     error_message = "The 'environment_name' must be supplied and cannot be null or empty string."
     condition     = length(var.environment_name) > 0
+  }
+}
+variable "subscription_number" {
+  description = "Subscription number to use when naming resources."
+  type        = number
+  nullable    = false
+  validation {
+    error_message = "The 'subscription_number' must be equal to or greater than 1."
+    condition     = var.subscription_number >= 1
   }
 }
 variable "azure_region" {
@@ -53,24 +62,15 @@ variable "azure_region" {
     condition     = length(var.azure_region) > 0
   }
 }
-variable "created_by_tag" {
-  description = "Tag to use when naming resources."
+variable "costcenter_tag_value" {
+  description = <<-EOF
+    The value of the costCenter tag.
+    This is DSB mandatory tag identifying resource group cost center affiliation.
+    Default value is set to DSB IKT cost center.
+  EOF
   type        = string
   nullable    = false
-  validation {
-    error_message = "The 'created_by_tag' must be supplied and cannot be null or empty string."
-    condition     = length(var.created_by_tag) > 0
-  }
-}
-variable "state_container_name" {
-  description = "Name of the state container to use when naming resources."
-  type        = string
-  nullable    = false
-  default     = "terraform-remote-backend-state"
-  validation {
-    error_message = "The 'state_container_name' must be supplied and cannot be null or empty string."
-    condition     = length(var.state_container_name) > 0
-  }
+  default     = "142" # DSB IKT cost center
 }
 variable "network_rules" {
   description = "Network rules to apply to the terraform backend state storage account."
@@ -80,7 +80,6 @@ variable "network_rules" {
     ip_rules                   = list(string)
     virtual_network_subnet_ids = list(string)
   })
-  nullable = true
   default = {
     # Default is to allow only DSB public IPs.
     default_action = "Deny"
@@ -140,3 +139,23 @@ variable "network_rules" {
     )
   }
 }
+variable "state_container_name" {
+  description = "Name of the state container to use when naming resources."
+  type        = string
+  nullable    = false
+  default     = "terraform-remote-backend-state"
+  validation {
+    error_message = "The 'state_container_name' must be supplied and cannot be null or empty string."
+    condition     = length(var.state_container_name) > 0
+  }
+}
+#TODO: Uncomment the following lines when the systemId tag is available and add default value.
+#variable "systemid_tag_value" {
+#  description = <<-EOF
+#    The value of the systemId tag.
+#    This is DSB mandatory tag identifying resource system affiliation.
+#  EOF
+#  type        = string
+#  nullable    = false
+#  default     = 
+#}
