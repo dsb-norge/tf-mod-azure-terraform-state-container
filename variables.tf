@@ -25,8 +25,8 @@ variable "application_name_short" {
     condition     = length(var.application_name_short) > 0
   }
 }
-variable "created_by_tag" {
-  description = "Tag to use when naming resources."
+variable "created_by_tag_value" {
+  description = "The value of createdBy Tag"
   type        = string
   nullable    = false
   validation {
@@ -62,9 +62,10 @@ variable "azure_region" {
     condition     = length(var.azure_region) > 0
   }
 }
-variable "costcenter_tag" {
+variable "costcenter_tag_value" {
   description = <<-EOF
-    DSB mandatory tag identifying resource group cost center affiliation.
+    The value of the costCenter tag.
+    This is DSB mandatory tag identifying resource group cost center affiliation.
     Default value is set to DSB IKT cost center.
   EOF
   type        = string
@@ -149,8 +150,11 @@ variable "state_container_name" {
   }
 }
 #TODO: Uncomment the following lines when the systemId tag is available and add default value.
-#variable "systemid_tag" {
-#  description = "DSB mandatory tag identifying system ID."
+#variable "systemid_tag_value" {
+#  description = <<-EOF
+#    The value of the systemId tag.
+#    This is DSB mandatory tag identifying resource system affiliation.
+#  EOF
 #  type        = string
 #  nullable    = false
 #  default     = 

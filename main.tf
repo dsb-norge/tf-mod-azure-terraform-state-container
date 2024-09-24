@@ -7,13 +7,13 @@ locals {
   storage_account_name              = lower(substr("stss${var.subscription_number}${local.application_name_short_full_alnum}${local.environment_name_alnum}", 0, 24))
   common_tags = {
     ApplicationName = var.application_name
-    CreatedBy       = var.created_by_tag
+    CreatedBy       = var.created_by_tag_value
     Environment     = var.environment_name
   }
 
   # For more information about DSB mandatory tags see confluence page : https://dsbno.atlassian.net/wiki/spaces/DSBTB/pages/2391179644/Bruk+av+tags
   rg_mandatory_tags = {
-    costCenter = var.costcenter_tag # defaut set to IKT
+    costCenter = var.costcenter_tag_value # defaut set to IKT
     #TODO: Uncomment the following lines when the systemId tag is available
     #    systemId   = var.systemid_tag
   }
