@@ -7,7 +7,7 @@ locals {
   storage_account_name              = lower(substr("stss${var.subscription_number}${local.application_name_short_full_alnum}${local.environment_name_alnum}", 0, 24))
   common_tags = {
     ApplicationName = var.application_name
-    CreatedBy       = var.created_by_tag_value
+    CreatedBy       = var.created_by_tag
     Environment     = var.environment_name
   }
 

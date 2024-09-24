@@ -25,7 +25,7 @@ variable "application_name_short" {
     condition     = length(var.application_name_short) > 0
   }
 }
-variable "created_by_tag_value" {
+variable "created_by_tag" {
   description = "The value of createdBy Tag"
   type        = string
   nullable    = false
