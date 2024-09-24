@@ -10,12 +10,21 @@ locals {
     CreatedBy       = var.created_by_tag
     Environment     = var.environment_name
   }
+
+  # For more information about DSB mandatory tags see confluence page : https://dsbno.atlassian.net/wiki/spaces/DSBTB/pages/2391179644/Bruk+av+tags
+  rg_mandatory_tags = {
+    costCenter = var.costcenter_tag_value # defaut set to IKT
+    #TODO: Uncomment the following lines when the systemId tag is available
+    #    systemId   = var.systemid_tag
+  }
 }
 
 resource "azurerm_resource_group" "tfstate" {
   location = var.azure_region
   name     = local.resource_group_name
-  tags     = merge(local.common_tags, { Description = "Resource group with terraform backend state for ${var.application_friendly_description}." })
+  tags = merge(local.common_tags, local.rg_mandatory_tags, {
+    Description = "Resource group with terraform backend state for ${var.application_friendly_description}."
+  })
 
   lifecycle {
     ignore_changes = [
