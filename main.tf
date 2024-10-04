@@ -27,9 +27,6 @@ resource "azurerm_resource_group" "tfstate" {
   })
 
   lifecycle {
-    ignore_changes = [
-      tags,
-    ]
     prevent_destroy = true
   }
 }
